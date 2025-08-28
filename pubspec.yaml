@@ -1,6 +1,6 @@
 name: ios_background_uploader
 description: A Flutter plugin for uploading large files in the background on iOS with progress updates.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/Sagar-Shrivastava/ios_background_uploader
 repository: https://github.com/Sagar-Shrivastava/ios_background_uploader
 issue_tracker: https://github.com/Sagar-Shrivastava/ios_background_uploader/issues
