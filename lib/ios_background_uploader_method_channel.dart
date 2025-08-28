@@ -3,15 +3,33 @@ import 'package:flutter/services.dart';
 
 import 'ios_background_uploader_platform_interface.dart';
 
-/// An implementation of [IosBackgroundUploaderPlatform] that uses method channels.
 class MethodChannelIosBackgroundUploader extends IosBackgroundUploaderPlatform {
-  /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('ios_background_uploader');
+  final eventChannel = const EventChannel('ios_background_uploader/events');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  Future<void> uploadFiles({
+    required String url,
+    required List<String> files,
+    Map<String, String>? headers,
+    Map<String, String>? fields,
+    String? tag,
+  }) async {
+    final args = {
+      'url': url,
+      'files': files,
+      'headers': headers ?? {},
+      'fields': fields ?? {},
+      'tag': tag ?? '',
+    };
+    await methodChannel.invokeMethod('uploadFiles', args);
+  }
+
+  @override
+  Stream<Map<String, dynamic>> get uploadEvents {
+    return eventChannel.receiveBroadcastStream().map((event) {
+      return Map<String, dynamic>.from(event);
+    });
   }
 }

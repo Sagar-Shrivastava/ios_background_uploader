@@ -1,3 +1,3 @@
 ## 0.0.1
-
-* TODO: Describe initial release.
+- Initial release
+- iOS background upload with progress updates
