@@ -24,4 +24,4 @@ Add the dependency to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  ios_background_uploader: ^1.0.0
+  ios_background_uploader: ^0.0.1
